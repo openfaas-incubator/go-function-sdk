@@ -24,8 +24,8 @@ type Request struct {
 	QueryString string
 }
 
-// Handler used for a serverless Go method invocation
-type Handler interface {
+// FunctionHandler used for a serverless Go method invocation
+type FunctionHandler interface {
 	Handle(req Request) (Response, error)
 }
 
