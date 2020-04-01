@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"context"
 	"net/http"
 )
 
@@ -20,6 +21,7 @@ type Response struct {
 // Request of function call
 type Request struct {
 	Body        []byte
+	Ctx         context.Context
 	Header      http.Header
 	QueryString string
 	Method      string
