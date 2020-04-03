@@ -21,11 +21,27 @@ type Response struct {
 // Request of function call
 type Request struct {
 	Body        []byte
-	Ctx         context.Context
 	Header      http.Header
 	QueryString string
 	Method      string
 	Host        string
+
+	ctx context.Context
+}
+
+// Context returns the request's context.
+func (r *Request) Context() context.Context {
+	return r.ctx
+}
+
+// WithContext changes the request's context.
+func (r *Request) WithContext(ctx context.Context) *Request {
+	if ctx == nil {
+		panic("nil context")
+	}
+	r.ctx = ctx
+
+	return r
 }
 
 // FunctionHandler used for a serverless Go method invocation
