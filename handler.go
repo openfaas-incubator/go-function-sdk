@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"context"
 	"net/http"
 )
 
@@ -24,6 +25,12 @@ type Request struct {
 	QueryString string
 	Method      string
 	Host        string
+	ctx         context.Context
+}
+
+// Context is set for optional cancellation inflight requests.
+func (r *Request) Context() context.Context {
+	return r.ctx
 }
 
 // FunctionHandler used for a serverless Go method invocation
